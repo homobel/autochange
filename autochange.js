@@ -1,6 +1,6 @@
 
 /****
-/*	jQuery AutoChange Plug-in, v 1.0.0
+/*	jQuery AutoChange Plug-in, v 1.0.1
 /*	by Archy Sharp 
 /*	MIT License
 ****/
@@ -19,11 +19,10 @@
 
 				input = $(c);
 
-				if(!input.data('auto-change')) {
+				if(input.data('auto-change') !== null) {
 
-					$.fn.autoChange.arg = arg;
 					input
-						.data('auto-change', true)
+						.data('auto-change', arg)
 						.data('auto-change-prev-val', input.val())
 						.on('focus', $.fn.autoChange.onChange)
 						.on('blur', $.fn.autoChange.offChange);
@@ -39,7 +38,6 @@
 
 	$.fn.autoChange.destroy = function(input) {
 
-		$.fn.autoChange.arg = null;
 		input
 			.data('auto-change', null)
 			.data('auto-change-prev-val', null)
@@ -60,11 +58,11 @@
 
 			input.data('auto-change-prev-val', val);
 
-			if($.fn.autoChange.arg) {
-				input.trigger('change', e);
+			if(input.data('auto-change')) {
+				input.trigger('auto-change', e);
 			}
 			else {
-				input.trigger('auto-change', e);
+				input.trigger('change', e);
 			}
 
 		}

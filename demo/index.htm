@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>autoChange demo</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="../autochange.js"></script>
+	<script type="text/javascript">
+
+		$(function() {
+
+			var logBox = $('.col2');
+
+			// common (change triggers on blur also)
+
+			$('.change').autoChange().on('change', function() {
+
+				$('<div>').text('first input changed').appendTo(logBox);
+
+			});
+
+			// save mode (no on blur change event)
+
+			$('.auto-change').autoChange(true).on('auto-change', function() {
+
+				$('<div>').text('second input changed').appendTo(logBox);
+
+			});
+
+			$('.reset').on('click', function() {
+				logBox.html('');
+			});
+
+		});
+
+	</script>
+</head>
+<body>
+	<div class="col1">
+		<input class="change" type="text">
+		<input class="auto-change" type="text">
+		<input class="reset" type="button" value="reset logbox">
+	</div>
+	<div class="col2">
+		
+	</div>
+</body>
+</html>
