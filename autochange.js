@@ -49,7 +49,7 @@
 	// handlers
 
 	$.fn.autoChange.keyHandler = function(e) {
-	
+
 		var input = $(this),
 			prevStr = input.data('auto-change-prev-val'),
 			val = input.val();

@@ -1,4 +1,4 @@
-# Autochnage jquery plugin
+# Autochange jQuery plugin
 
 by Archy Sharp
 MIT License
@@ -12,8 +12,14 @@ Notice that native change event triggers on blur also. To provide that there is 
 
 	$('input').autoChange(true).on('auto-change', fn);
 
-To destroy all changes that plugin makes on initialization try this:
+To destroy all changes that plugin makes through initialization try this:
 
 	$('input').autoChange(null);
+
+Forced change events obtain the original event object as second paramenter.
+
+	function fn(e, eOriginal) {
+		// ...
+	}
 
 Enjoy it.
