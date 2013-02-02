@@ -16,7 +16,7 @@ To destroy all changes that plugin makes through initialization try this:
 
 	$('input').autoChange(null);
 
-Forced change events obtain the original event object as second paramenter.
+Forced events obtain the original event object as second argument:
 
 	function fn(e, eOriginal) {
 		// ...
