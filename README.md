@@ -8,7 +8,7 @@ MIT License
 	$('input').autoChange().on('change', fn);
 
 This code makes input to trigger change event on every key event when element focused.
-Notice that native change event triggers on blur also. To provide that there is save mode provided:
+Notice that native change event triggers on blur also. There is safe mode to prevent this:
 
 	$('input').autoChange(true).on('auto-change', fn);
 
@@ -16,7 +16,7 @@ To destroy all changes that plugin makes through initialization try this:
 
 	$('input').autoChange(null);
 
-Forced events obtain the original event object as second argument:
+Forced events obtains the original event object as second argument:
 
 	function fn(e, eOriginal) {
 		// ...
