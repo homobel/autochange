@@ -1,58 +1,27 @@
 
 /****
-/*	jQuery AutoChange Plug-in, v 1.0.1
+/*	jQuery AutoChange Plug-in, v 1.0.2
 /*	by Archy Sharp 
 /*	MIT License
 ****/
 
 (function($, undefined) {
 
-	$.fn.autoChange = function(arg) {
-
-		if(arg === null) {
-			return this.each(function(i, c) {
-				$.fn.autoChange.destroy($(c));
-			});
-		}
-		else {
-			return this.each(function(i, c) {
-
-				input = $(c);
-
-				if(input.data('auto-change') !== null) {
-
-					input
-						.data('auto-change', arg)
-						.data('auto-change-prev-val', input.val())
-						.on('focus', $.fn.autoChange.onChange)
-						.on('blur', $.fn.autoChange.offChange);
-
-				}
-
-			});
-		}
-
-	};
-
-	// helpers
-
-	$.fn.autoChange.destroy = function(input) {
+	function destroy(input) {
 
 		input
-			.data('auto-change', null)
-			.data('auto-change-prev-val', null)
-			.off('focus', $.fn.autoChange.onChange)
-			.off('blur', $.fn.autoChange.offChange);
+			.off('focus', onChange)
+			.off('blur', offChange)
+			.removeData('auto-change')
+			.removeData('auto-change-prev-val');
 
-	};
-	
-	// handlers
+	}
 
-	$.fn.autoChange.keyHandler = function(e) {
+	function keyHandler(e) {
 
 		var input = $(this),
-			prevStr = input.data('auto-change-prev-val'),
-			val = input.val();
+			val = input.val(),
+			prevStr = input.data('auto-change-prev-val');
 
 		if(prevStr !== val) {
 
@@ -67,17 +36,45 @@
 
 		}
 	
-	};
+	}
 	
-	$.fn.autoChange.onChange = function() {
+	function onChange() {
 
-		$(this).on('keyup', $.fn.autoChange.keyHandler);
+		$(this).on('keyup', keyHandler);
 
-	};
+	}
 	
-	$.fn.autoChange.offChange = function(e) {
+	function offChange(e) {
 
-		$(this).off('keyup', $.fn.autoChange.keyHandler);
+		$(this).off('keyup', keyHandler);
+
+	}
+
+	$.fn.autoChange = function(flag) {
+
+		if(flag === null) {
+
+			return this.each(function(i, input) {
+				destroy($(input));
+			});
+
+		}
+
+		return this.each(function(i, input) {
+
+			input = $(input);
+
+			if(input.data('auto-change') === undefined) {
+
+				input
+					.on('focus', onChange)
+					.on('blur', offChange)
+					.data('auto-change', !!flag)
+					.data('auto-change-prev-val', input.val());
+
+			}
+
+		});
 
 	};
 

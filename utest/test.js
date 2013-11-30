@@ -13,13 +13,13 @@
 
 			input1.autoChange();
 
-			ok(input1.data('auto-change') !== null, 'auto-change data property setted');
-			ok(input1.data('auto-change-prev-val') !== null, 'previous value saved');
+			ok(input1.data('auto-change') === false, 'auto-change data property setted');
+			ok(input1.data('auto-change-prev-val') === '', 'previous value saved');
 
 			input2.autoChange(true);
 
-			ok(input2.data('auto-change') !== null, 'auto-change data property setted in save mode');
-			ok(input2.data('auto-change-prev-val') !== null, 'previous value saved in save mode');
+			ok(input2.data('auto-change') === true, 'auto-change data property setted in save mode');
+			ok(input2.data('auto-change-prev-val') === '', 'previous value saved in save mode');
 
 		});
 
@@ -65,11 +65,11 @@
 			input1.autoChange(null);
 			input2.autoChange(null);
 
-			ok(input1.data('auto-change') === null, 'auto-change data property destroyed');
-			ok(input1.data('auto-change-prev-val') === null, 'previous value destroyed');
+			ok(input1.data('auto-change') === undefined, 'auto-change data property destroyed');
+			ok(input1.data('auto-change-prev-val') === undefined, 'previous value destroyed');
 
-			ok(input2.data('auto-change') === null, 'auto-change data property destroyed in save mode');
-			ok(input2.data('auto-change-prev-val') === null, 'previous value destroyed in save mode');
+			ok(input2.data('auto-change') === undefined, 'auto-change data property destroyed in save mode');
+			ok(input2.data('auto-change-prev-val') === undefined, 'previous value destroyed in save mode');
 
 
 		});

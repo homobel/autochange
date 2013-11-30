@@ -13,20 +13,19 @@
 			var logBox = $('.col2');
 
 			// common (change triggers on blur also)
-
 			$('.change').autoChange().on('change', function() {
-
 				$('<div>').text('first input changed').appendTo(logBox);
-
 			});
 
 			// save mode (no on blur change event)
-
 			$('.auto-change').autoChange(true).on('auto-change', function() {
-
 				$('<div>').text('second input changed').appendTo(logBox);
-
 			});
+
+			// destroy
+			$('.destroy').autoChange(true).on('auto-change', function() {
+				$('<div>').text('destroy input changed').appendTo(logBox);
+			}).autoChange(null);
 
 			$('.reset').on('click', function() {
 				logBox.html('');
@@ -40,6 +39,7 @@
 	<div class="col1">
 		<input class="change" type="text">
 		<input class="auto-change" type="text">
+		<input class="destroy" type="text">
 		<input class="reset" type="button" value="reset logbox">
 	</div>
 	<div class="col2">
