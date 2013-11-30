@@ -3,7 +3,7 @@
 by Archy Sharp
 MIT License
 
-*v 1.0.1*
+*v 1.0.2*
 
 	$('input').autoChange().on('change', fn);
 
