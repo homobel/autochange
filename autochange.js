@@ -10,8 +10,7 @@
 	function destroy(input) {
 
 		input
-			.off('focus', onChange)
-			.off('blur', offChange)
+			.off('keyup', keyHandler)
 			.removeData('auto-change')
 			.removeData('auto-change-prev-val');
 
@@ -38,18 +37,6 @@
 	
 	}
 	
-	function onChange() {
-
-		$(this).on('keyup', keyHandler);
-
-	}
-	
-	function offChange(e) {
-
-		$(this).off('keyup', keyHandler);
-
-	}
-
 	$.fn.autoChange = function(flag) {
 
 		if(flag === null) {
@@ -67,8 +54,7 @@
 			if(input.data('auto-change') === undefined) {
 
 				input
-					.on('focus', onChange)
-					.on('blur', offChange)
+					.on('keyup', keyHandler)
 					.data('auto-change', !!flag)
 					.data('auto-change-prev-val', input.val());
 
